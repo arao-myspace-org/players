@@ -15,14 +15,35 @@
             "version": "1.10.2",
             "toolsId": "6d7fb56b-aa46-4010-8cb1-49f28aa73503"
         },
+        "crossNavigation": {
+            "inbounds": {
+                "intent1": {
+                    "signature": {
+                        "parameters": {},
+                        "additionalParameters": "allowed"
+                    },
+                    "semanticObject": "players",
+                    "action": "maintain"
+                    }
+                }
+        },
         "dataSources": {
             "mainService": {
                 "uri": "/sap/opu/odata/sap/ZCRUD_SERVICE_SRV/",
                 "type": "OData",
                 "settings": {
-                    "annotations": [],
+                    "annotations": [
+                        "annotation0"
+                    ],
                     "localUri": "localService/metadata.xml",
                     "odataVersion": "2.0"
+                }
+            },
+            "annotation0": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotation0.xml",
+                "settings": {
+                    "localUri": "annotations/annotation0.xml"
                 }
             }
         }
@@ -55,7 +76,8 @@
                 "sap.ui.comp": {},
                 "sap.ui.generic.app": {},
                 "sap.ui.table": {},
-                "sap.ushell": {}
+                "sap.ushell": {},
+                "sap.uxap": {}
             }
         },
         "contentDensities": {
@@ -99,6 +121,12 @@
                     "target": [
                         "TargetMain"
                     ]
+                },
+                {
+                    "name": "RouteUnavailable",
+                    "target": [
+                        "TargetUnavailable"
+                    ]
                 }
             ],
             "targets": {
@@ -108,6 +136,12 @@
                     "clearControlAggregation": false,
                     "viewId": "Main",
                     "viewName": "Main"
+                },
+                "TargetUnavailable": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "Unavailable",
+                    "viewName": "Unavailable"
                 }
             }
         },

@@ -9,7 +9,12 @@ sap.ui.define([
 
         return Controller.extend("players.controller.Main", {
             onInit: function () {
+                const oRouter = this.getOwnerComponent().getRouter();
+                oRouter.getRoute("RouteMain").attachPatternMatched(this._onObjectMatched, this);
 
+            },
+            _onObjectMatched: function () {
+              
             }
         });
     });

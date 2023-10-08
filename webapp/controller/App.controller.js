@@ -7,6 +7,12 @@ sap.ui.define(
   
       return BaseController.extend("players.controller.App", {
         onInit() {
+          this.getOwnerComponent().getModel().attachRequestFailed(this.handleBackendUnavailable);
+        },
+        handleBackendUnavailable: function (event) {
+          const oRouter = this.getOwnerComponent().getRouter();
+          
+          oRouter.navTo("RouteUnavailable");
         }
       });
     }

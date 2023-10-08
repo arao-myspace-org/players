@@ -1,18 +1,15 @@
 <mvc:View
     controllerName="players.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
-    displayBlock="true"
-    xmlns="sap.m">
-    <Page
-        id="page"
-        title="{i18n>title}">
-        <List
-            id="players"
-            items="{/AttributesSet}">
-            <StandardListItem
-                description="{position}"
-                title="{club}"
-            />
-        </List>
-    </Page>
+    xmlns:m="sap.m"
+    xmlns="sap.uxap">
+		<m:List
+								id="players"
+								items="{/AttributesSet}"
+							>
+								<m:StandardListItem
+									description="{position}"
+									title="{club}"
+								/>
+							</m:List>
 </mvc:View>
