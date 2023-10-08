@@ -1,15 +1,14 @@
 <mvc:View
     controllerName="players.controller.Main"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:m="sap.m"
-    xmlns="sap.uxap">
-		<m:List
-								id="players"
-								items="{/AttributesSet}"
-							>
-								<m:StandardListItem
-									description="{position}"
-									title="{club}"
-								/>
-							</m:List>
+	xmlns="sap.f">
+	<FlexibleColumnLayout id="flexibleColumnLayout" backgroundDesign="Solid">
+		<beginColumnPages>
+		<mvc:XMLView id="masterView" viewName="players.view.Master"/>
+		</beginColumnPages>
+		<midColumnPages>
+			<mvc:XMLView id="detailView" viewName="players.view.Detail"/>
+		</midColumnPages>
+	</FlexibleColumnLayout>
+		
 </mvc:View>

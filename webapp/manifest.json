@@ -24,8 +24,8 @@
                     },
                     "semanticObject": "players",
                     "action": "maintain"
-                    }
                 }
+            }
         },
         "dataSources": {
             "mainService": {
@@ -127,6 +127,18 @@
                     "target": [
                         "TargetUnavailable"
                     ]
+                },
+                {
+                    "name": "RouteDetail",
+                    "target": [
+                        "TargetDetail"
+                    ]
+                },
+                {
+                    "name": "RouteMaster",
+                    "target": [
+                        "TargetMaster"
+                    ]
                 }
             ],
             "targets": {
@@ -142,6 +154,18 @@
                     "transition": "fade",
                     "viewId": "Unavailable",
                     "viewName": "Unavailable"
+                },
+                "TargetDetail": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "Detail",
+                    "viewName": "Detail"
+                },
+                "TargetMaster": {
+                    "viewType": "XML",
+                    "transition": "fade",
+                    "viewId": "Master",
+                    "viewName": "Master"
                 }
             }
         },
