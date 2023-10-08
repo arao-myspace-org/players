@@ -32,18 +32,18 @@ server:
         backend:
           - scp: true
             path: /sap
-            url: http://npl001:8000
+            url: http://vhcalnplci:8000
             destination: NPL001
-    - name: sap-fe-mockserver
-      beforeMiddleware: csp
-      configuration:
-        mountPath: /
-        services:
-          - urlPath: /sap/opu/odata/sap/ZCRUD_SERVICE_SRV
-            metadataPath: ./webapp/localService/metadata.xml
-            mockdataPath: ./webapp/localService/data
-            generateMockData: true
-        annotations: []
+    # - name: sap-fe-mockserver
+    #   beforeMiddleware: csp
+    #   configuration:
+    # mountPath: /
+    # services:
+    #   - urlPath: /sap/opu/odata/sap/ZCRUD_SERVICE_SRV
+    #     metadataPath: ./webapp/localService/metadata.xml
+    #     mockdataPath: ./webapp/localService/data
+    #     generateMockData: true
+    # annotations: []
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:
