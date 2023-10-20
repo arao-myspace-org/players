@@ -1,77 +1,45 @@
-<core:FragmentDefinition
-	xmlns="sap.m"
-	xmlns:f="sap.ui.layout.form"
-	xmlns:mvc="sap.ui.core.mvc"
-	xmlns:core="sap.ui.core">
-	<Dialog
-		id="addDialog"
-		title="Hello {/recipient/name}">
+<core:FragmentDefinition xmlns="sap.m"
+	xmlns:smartForm="sap.ui.comp.smartform"
+	xmlns:smartField="sap.ui.comp.smartfield"
+	xmlns:core="sap.ui.core"
+	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
+	<Dialog id="addDialog" title="Hello {/recipient/name}">
 		<content>
-			<VBox class="sapUiSmallMargin" id="formContainer">
-				<f:SimpleForm id="SimpleFormChangeColumn_twoGroups234"
-					editable="true"
-					layout="ColumnLayout"
-					title="Personal"
-					columnsM="2"
-					columnsL="2"
-					columnsXL="2">
-					<f:content>
-						<core:Title text="Information" />
-						<Label text="Name" />
-						<Input required="true" change="onChange" value="" />
-						<Label text="Street/No." />
-						<Input value="street/name"></Input>
-						<Input value="street/number">
-							<layoutData>
-								<f:ColumnElementData cellsSmall="2" cellsLarge="2" />
-							</layoutData>
-						</Input>
-						<Label text="ZIP Code/City" />
-						<Input value="zip/code">
-							<layoutData>
-								<f:ColumnElementData cellsSmall="3" cellsLarge="2" />
-							</layoutData>
-						</Input>
-						<Input value="zip/city" />
-						<Label text="Country" />
-						<Select id="country">
-							<items>
-								<core:Item text="England" key="England" />
-								<core:Item text="Germany" key="Germany" />
-								<core:Item text="USA" key="USA" />
-							</items>
-						</Select>
-						<core:Title text="Contact" />
-						<Label text="Email" />
-						<Input value="email" />
-						<Label text="Phone Number" />
-						<Input value="phone/number"></Input>
-						<Input value="phone/time">
-							<layoutData>
-								<f:ColumnElementData cellsSmall="2" cellsLarge="2" />
-							</layoutData>
-						</Input>
-						<Label text="Personal website" />
-						<Input value="website" />
-					</f:content>
-				</f:SimpleForm>
-			</VBox>
+			<smartForm:SmartForm id="smartForm" app:defaultDropDownDisplayBehaviour="idAndDescription" editTogglable="true" editToggled="handleEditToggled" checkButton="true" validationMode="Async">
+				<smartForm:Group label="{i18n>player}">
+					<smartForm:GroupElement label="{i18n>playerId}">
+						<smartField:SmartField value="{player_id}" />
+					</smartForm:GroupElement>
+					<smartForm:GroupElement label="{i18n>dayOfBirth}">
+						<smartField:SmartField value="{dob}" />
+					</smartForm:GroupElement>
+					<smartForm:GroupElement label="{i18n>height}">
+						<smartField:SmartField value="{height}"/>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement label="{i18n>weight}">
+						<smartField:SmartField value="{weight}"/>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement label="{i18n>position}">
+						<smartField:SmartField value="{position}">
+								<smartField:configuration>
+							<smartField:Configuration controlType="dropDownList"
+								displayBehaviour="descriptionAndId" />
+						</smartField:configuration>
+					</smartField:SmartField>
+					</smartForm:GroupElement>
+					<smartForm:GroupElement label="{i18n>club}">
+						<smartField:SmartField value="{club}" />
+					</smartForm:GroupElement>
+				</smartForm:Group>
+			</smartForm:SmartForm>
 		</content>
 		<footer>
 			<Toolbar>
 				<content>
-					<Button id="messagePopoverBtn"
-						press=".handleMessagePopoverPress"
-						ariaHasPopup="Dialog" />
+					<Button id="messagePopoverBtn" press=".handleMessagePopoverPress" ariaHasPopup="Dialog" />
 					<ToolbarSpacer />
-					<Button type="Accept"
-							text="Save"
-							press="._generateInvalidUserInput" />
-					<Button id="Reject"
-						text="Reject"
-						type="Reject"
-						press="._closeDialog"
-						ariaHasPopup="Dialog" />
+					<Button type="Accept" text="Save" press="._generateInvalidUserInput" />
+					<Button id="Reject" text="Reject" type="Reject" press="._closeDialog" ariaHasPopup="Dialog" />
 				</content>
 			</Toolbar>
 		</footer>
