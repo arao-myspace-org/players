@@ -95,6 +95,9 @@
                 "dataSource": "mainService",
                 "preload": true,
                 "settings": {}
+            },
+            "layout": {
+                "type": "sap.ui.model.json.JSONModel"
             }
         },
         "resources": {
@@ -104,24 +107,21 @@
                 }
             ]
         },
+        "config": {
+            "fullWidth": true
+        },
         "routing": {
             "config": {
-                "routerClass": "sap.m.routing.Router",
+                "routerClass": "sap.f.routing.Router",
+                "type": "View",
                 "viewType": "XML",
-                "async": true,
-                "viewPath": "players.view",
-                "controlAggregation": "pages",
-                "controlId": "app",
-                "clearControlAggregation": false
+                "path": "players.view",
+                "controlId": "flexibleColumnLayout",
+                "transition": "slide",
+                "bypassed": {},
+                "async": true
             },
             "routes": [
-                {
-                    "name": "RouteMain",
-                    "pattern": ":?query:",
-                    "target": [
-                        "TargetMain"
-                    ]
-                },
                 {
                     "name": "RouteUnavailable",
                     "target": [
@@ -129,51 +129,48 @@
                     ]
                 },
                 {
-                    "name": "RouteDetail",
+                    "pattern": ":layout:",
+                    "name": "TargetMaster",
                     "target": [
+                        "TargetMaster"
+                    ]
+                },
+                {
+                    "name": "RouteDetail",
+                    "pattern": "RouteDetail/{id}/{layout}",
+                    "target": [
+                        "TargetMaster",
                         "TargetDetail"
                     ]
                 },
                 {
                     "name": "RouteMaster",
                     "target": [
-                        "TargetMaster"
+                        "TargetMaster",
+                        "TargetDetail"
                     ]
                 }
             ],
             "targets": {
-                "TargetMain": {
-                    "viewType": "XML",
-                    "transition": "slide",
-                    "clearControlAggregation": false,
-                    "viewId": "Main",
-                    "viewName": "Main"
-                },
-                "TargetUnavailable": {
-                    "viewType": "XML",
-                    "transition": "fade",
-                    "viewId": "Unavailable",
-                    "viewName": "Unavailable"
+                "TargetMaster": {
+                    "name": "Master",
+                    "controlAggregation": "beginColumnPages"
                 },
                 "TargetDetail": {
-                    "viewType": "XML",
-                    "transition": "fade",
-                    "viewId": "Detail",
-                    "viewName": "Detail"
+                    "name": "Detail",
+                    "controlAggregation": "midColumnPages"
                 },
-                "TargetMaster": {
-                    "viewType": "XML",
-                    "transition": "fade",
-                    "viewId": "Master",
-                    "viewName": "Master"
+                "TargetUnavailable": {
+                    "name": "Unavailable",
+                    "controlAggregation": "beginColumnPages"
                 }
             }
         },
         "rootView": {
-            "viewName": "players.view.App",
+            "viewName": "players.view.Main",
             "type": "XML",
             "async": true,
-            "id": "App"
+            "id": "flexibleColumnLayout"
         }
     },
     "sap.cloud": {

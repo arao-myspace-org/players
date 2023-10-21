@@ -1,19 +1,37 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller"],
+  ["players/controller/BaseController", "sap/f/library"],
   /**
    * @param {typeof sap.ui.core.mvc.Controller} Controller
    */
-  function (Controller) {
+  function (Controller, fioriLibrary) {
     "use strict";
 
     return Controller.extend("players.controller.Detail", {
       onInit: function () {
-        const oRouter = this.getOwnerComponent().getRouter();
-        oRouter
-          .getRoute("RouteMain")
+        this.getRouter()
+          .getRoute("RouteDetail")
           .attachPatternMatched(this._onObjectMatched, this);
       },
-      _onObjectMatched: function () {},
+      _onObjectMatched: function (event) {
+        this._playerId = event.getParameter("arguments").id;
+        this.byId("playerGeneralInformation").bindElement(
+          `/AttributesSet('${this._playerId}')`
+        );
+      },
+
+      /**
+       * @override
+       */
+
+      onCloseDetailView: function () {
+        const sNextLayout = this.getOwnerComponent()
+          .getModel("layout")
+          .getProperty("/actionButtonsInfo/midColumn/closeColumn");
+        this.getRouter().navTo("RouteDetail", {
+          id: this._playerId,
+          layout: sNextLayout,
+        });
+      },
     });
   }
 );

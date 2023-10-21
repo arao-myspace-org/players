@@ -3,7 +3,7 @@
    	xmlns="sap.uxap"
 	xmlns:m="sap.m"
 	xmlns:f="sap.f"
-	xmlns:form="sap.ui.layout.form"
+	xmlns:core="sap.ui.core"
 	xmlns:mvc="sap.ui.core.mvc">
 <ObjectPageLayout
 		id="ObjectPageLayout"
@@ -28,6 +28,10 @@
 					<m:Button
 						icon="sap-icon://action"
 						type="Transparent"/>
+					<m:Button
+						icon="sap-icon://decline"
+						type="Transparent"
+						press="onCloseDetailView"/>
 				</actions>
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
@@ -52,26 +56,11 @@
 		</headerContent>
 
 		<sections>
-			<ObjectPageSection title="General Information">
+			<ObjectPageSection id="playerGeneralInformation" title="General Information">
 				<subSections>
 					<ObjectPageSubSection>
 						<blocks>
-							<form:SimpleForm
-								maxContainerCols="2"
-								editable="false"
-								layout="ResponsiveGridLayout"
-								labelSpanL="12"
-								labelSpanM="12"
-								emptySpanL="0"
-								emptySpanM="0"
-								columnsL="1"
-								columnsM="1">
-								<form:content>
-									<m:Label text="Product ID"/>
-									<m:Label text="Description"/>
-									<m:Label text="Supplier"/>
-								</form:content>
-							</form:SimpleForm>
+							<core:Fragment fragmentName="players.view.fragment.PlayerForm" type="XML"/>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>

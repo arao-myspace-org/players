@@ -1,5 +1,9 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/f/library", "sap/ui/core/Fragment"],
+  [
+    "players/controller/BaseController",
+    "sap/f/library",
+    "sap/ui/core/Fragment",
+  ],
   /**
    * @param {typeof sap.ui.core.mvc.Controller} Controller
    */
@@ -8,16 +12,22 @@ sap.ui.define(
 
     return Controller.extend("players.controller.Master", {
       onInit: function () {
-        const oRouter = this.getOwnerComponent().getRouter();
-        oRouter
-          .getRoute("RouteMain")
-          .attachPatternMatched(this._onObjectMatched, this);
+        // this.getRouter()
+        //   .getRoute("RouteMain")
+        //   .attachPatternMatched(this._onObjectMatched, this);
       },
       _onObjectMatched: function () {},
 
-      onItemPress: function (item) {
-        const FCL = this.getView().getParent().getParent();
-        FCL.setLayout(fioriLibrary.LayoutType.TwoColumnsMidExpanded);
+      onItemPress: function (event) {
+        const oNextUIState = this.getOwnerComponent()
+          .getHelper()
+          .getNextUIState(1);
+
+        this.getRouter().navTo("RouteDetail", {
+          id: event.getParameter("listItem").getBindingContext().getObject()
+            .player_id,
+          layout: oNextUIState.layout,
+        });
       },
       onAdd: async function () {
         if (!this.addDialog)

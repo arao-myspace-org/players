@@ -1,4 +1,4 @@
-sap.ui.define(["sap/ui/core/mvc/Controller"], function (BaseController) {
+sap.ui.define(["players/controller/BaseController"], function (BaseController) {
   "use strict";
 
   return BaseController.extend("players.controller.App", {
@@ -8,9 +8,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], function (BaseController) {
         .attachRequestFailed(this.handleBackendUnavailable.bind(this));
     },
     handleBackendUnavailable: function (event) {
-      const oRouter = this.getOwnerComponent().getRouter();
-
-      oRouter.navTo("RouteUnavailable");
+      // const oRouter = this.getOwnerComponent().getRouter();
+      // oRouter.navTo("RouteUnavailable");
     },
   });
 });

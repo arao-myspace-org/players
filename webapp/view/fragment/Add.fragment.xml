@@ -1,37 +1,8 @@
 <core:FragmentDefinition xmlns="sap.m"
-	xmlns:smartForm="sap.ui.comp.smartform"
-	xmlns:smartField="sap.ui.comp.smartfield"
-	xmlns:core="sap.ui.core"
-	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-	<Dialog id="addDialog" title="Hello {/recipient/name}">
+	xmlns:core="sap.ui.core">
+	<Dialog id="addDialog" title="{i18n>addPlayer}">
 		<content>
-			<smartForm:SmartForm id="smartForm" app:defaultDropDownDisplayBehaviour="idAndDescription" editTogglable="true" editToggled="handleEditToggled" checkButton="true" validationMode="Async">
-				<smartForm:Group label="{i18n>player}">
-					<smartForm:GroupElement label="{i18n>playerId}">
-						<smartField:SmartField value="{player_id}" />
-					</smartForm:GroupElement>
-					<smartForm:GroupElement label="{i18n>dayOfBirth}">
-						<smartField:SmartField value="{dob}" />
-					</smartForm:GroupElement>
-					<smartForm:GroupElement label="{i18n>height}">
-						<smartField:SmartField value="{height}"/>
-					</smartForm:GroupElement>
-					<smartForm:GroupElement label="{i18n>weight}">
-						<smartField:SmartField value="{weight}"/>
-					</smartForm:GroupElement>
-					<smartForm:GroupElement label="{i18n>position}">
-						<smartField:SmartField value="{position}">
-								<smartField:configuration>
-							<smartField:Configuration controlType="dropDownList"
-								displayBehaviour="descriptionAndId" />
-						</smartField:configuration>
-					</smartField:SmartField>
-					</smartForm:GroupElement>
-					<smartForm:GroupElement label="{i18n>club}">
-						<smartField:SmartField value="{club}" />
-					</smartForm:GroupElement>
-				</smartForm:Group>
-			</smartForm:SmartForm>
+			<core:Fragment fragmentName="players.view.fragment.PlayerForm" type="XML"/>
 		</content>
 		<footer>
 			<Toolbar>
