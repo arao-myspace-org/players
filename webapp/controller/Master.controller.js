@@ -1,13 +1,14 @@
 sap.ui.define(
   [
     "players/controller/BaseController",
-    "sap/f/library",
     "sap/ui/core/Fragment",
+    "sap/m/MessageToast",
+    "sap/m/MessageBox",
   ],
   /**
    * @param {typeof sap.ui.core.mvc.Controller} Controller
    */
-  function (Controller, fioriLibrary, Fragment) {
+  function (Controller, Fragment, MessageToast, MessageBox) {
     "use strict";
 
     return Controller.extend("players.controller.Master", {
@@ -32,9 +33,11 @@ sap.ui.define(
       onAdd: async function () {
         if (!this.addDialog)
           this.addDialog = await Fragment.load({
+            id: this.getView().getId(),
             name: "players.view.fragment.Add",
             controller: this,
           });
+        this.byId("smartForm").setEditable(true);
         this.getView().addDependent(this.addDialog);
         const oBindingContext = this.getView()
           .getModel()
@@ -46,17 +49,14 @@ sap.ui.define(
         if (event.getParameter("editable")) return;
         const payload = event.getSource().getBindingContext().getObject();
         const model = this.getView().getModel();
-        const fields = event.getSource().getSmartFields();
-        fields.forEach((field) => {
-          const path = field.getBinding("value").getPath();
-          payload[path] = field.getValue();
-        });
         model.create("/AttributesSet", payload, {
-          success: (res) => {
-            console.log(res);
+          success: () => {
+            this.addDialog.close();
+            MessageToast.show(this.getText("success"));
           },
           error: (err) => {
-            sap.m.MessageBox.error(err);
+            this.addDialog.close();
+            MessageBox.error(this.getBackendErrorMessage(err));
           },
         });
       },
