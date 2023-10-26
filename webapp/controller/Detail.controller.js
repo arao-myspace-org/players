@@ -50,6 +50,32 @@ sap.ui.define(
         });
       },
 
+      onDeletePlayer: function () {
+        MessageBox.confirm(this.getText("confirmDelete"), {
+          icon: MessageBox.Icon.QUESTION,
+          title: this.getText("confirmTitle"),
+          actions: [MessageBox.Action.YES, MessageBox.Action.NO],
+          emphasizedAction: MessageBox.Action.YES,
+          onClose: function (action) {
+            action === MessageBox.Action.YES && this.onConfirmDeletePlayer();
+          }.bind(this),
+        });
+      },
+      onConfirmDeletePlayer: function () {
+        const bindingContext = this.byId(
+          "playerGeneralInformation"
+        ).getBindingContext();
+        const model = this.getView().getModel();
+        model.remove(bindingContext.getPath(), {
+          success: () => {
+            this.onCloseDetailView();
+            MessageToast.show(this.getText("success"));
+          },
+          error: (err) => {
+            MessageBox.error(this.getBackendErrorMessage(err));
+          },
+        });
+      },
       /**
        * @override
        */
