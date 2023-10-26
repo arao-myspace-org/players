@@ -16,15 +16,10 @@
 		<headerTitle>
 			<ObjectPageDynamicHeaderTitle>
 				<actions>
-					<m:ToggleButton
-						text="Edit"
-						type="Emphasized"/>
 					<m:Button
 						text="Delete"
-						type="Transparent"/>
-					<m:Button
-						text="Copy"
-						type="Transparent"/>
+						type="Transparent"
+						press="onDeletePlayer"/>
 					<m:Button
 						icon="sap-icon://action"
 						type="Transparent"/>
