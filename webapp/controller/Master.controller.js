@@ -45,9 +45,8 @@ sap.ui.define(
         this.addDialog.setBindingContext(oBindingContext);
         this.addDialog.open();
       },
-      handleEditToggled: function (event) {
-        if (event.getParameter("editable")) return;
-        const payload = event.getSource().getBindingContext().getObject();
+      onAddPlayerSave: function () {
+        const payload = this.byId("smartForm").getBindingContext().getObject();
         const model = this.getView().getModel();
         model.create("/AttributesSet", payload, {
           success: () => {
@@ -59,6 +58,9 @@ sap.ui.define(
             MessageBox.error(this.getBackendErrorMessage(err));
           },
         });
+      },
+      onAddPlayerCancel: function () {
+        this.addDialog.close();
       },
     });
   }

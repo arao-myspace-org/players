@@ -3,7 +3,7 @@
 	xmlns:smartField="sap.ui.comp.smartfield"
 	xmlns:core="sap.ui.core"
 	xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1">
-			<smartForm:SmartForm id="smartForm" app:defaultDropDownDisplayBehaviour="idAndDescription" editTogglable="true" editToggled="handleEditToggled" checkButton="true" validationMode="Async">
+			<smartForm:SmartForm id="smartForm" app:defaultDropDownDisplayBehaviour="idAndDescription" editTogglable="false" checkButton="false" validationMode="Async">
 				<smartForm:Group label="{i18n>player}">
 					<smartForm:GroupElement label="{i18n>playerId}">
 						<smartField:SmartField value="{player_id}" />
